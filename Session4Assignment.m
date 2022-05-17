@@ -1,0 +1,6 @@
+function [y1, y2] = Session4Assignment(x1,x2)
+    [M1 m1 x1scaled M2 m2 x2scaled P y1] = deal(max(x1, [], "all"), ...
+        min(x1, [], "all"), rescale(x1,m1,M1), max(x2, [], "all"), min(x2, [], "all"), ...
+        rescale(x2,m2,M2), x1scaled.*x2scaled, sumsqr(P));
+    [~,y2] = ttest(x1,x2);
+end
