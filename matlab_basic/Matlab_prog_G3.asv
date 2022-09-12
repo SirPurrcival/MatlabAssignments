@@ -1,0 +1,33 @@
+%Create square matrix of uniformly distributed values from -5 to 5 (10x10)
+A = -5 + (5 + 5) .* rand(10.*10,1);
+x = sqrt(length(A));
+A = reshape(A,x,x);
+
+%Make a histogram of A
+A_hist = hist(reshape(A,100,1));
+
+%Find min and max values of A
+A_max = max(A,[],"all");
+A_min = min(A,[],"all");
+
+%mean and stdev of A
+A_mean = mean(A,"all");
+A_stdev = std(A,0,"all");
+
+%Invert matrix
+B = inv(A);
+
+%Histogram, min, max, mean, stdev
+B_hist = hist(reshape(B,100,1));
+B_min = min(B,[],"all");
+B_max = max(B,[],"all");
+B_mean = mean(B,"all");
+B_stdev = std(B,0,"all");
+
+%Is the inverse? Diagonals should all be ones
+error = 0.001;
+tmp_1 = diag(B*A);
+tmp_2 = diag(ones(size(A)));
+inv_check = tmp_1(tmp_2 >= tmp_1 + error & tmp_2 <= tmp_1 - error)
+
+

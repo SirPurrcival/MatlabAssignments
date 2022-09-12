@@ -1,0 +1,29 @@
+%Initializing the scores variable. Also transpose it because i am an idiot
+%and entered it the wrong way
+scores = [[1,2,3,4,5,6,7,8,9,10];[7,6,9,4,7,8,5,8,7,8];[10,8,10,7,8,10,6,9,8,10];[9,7,10,6,8,9,7,7,8,8];[9,6,9,5,9,10,6,6,5,10]]';
+
+%Create vector a_mean with the mean of each students scores (10 by 1)
+a_mean = mean(scores(:,2:end),2);
+
+%Create vector containing min and max grades of each student
+a_min = min(scores(:,2:end), [], 2);
+a_max = max(scores(:,2:end), [], 2);
+
+%Create vector with mean test grades across students (also min and max)
+b_mean = mean(scores(:,2:end),1);
+b_min = min(scores(:,2:end), [], 1);
+b_max = max(scores(:,2:end), [],1);
+
+%Every test needs to be >= 6. Resit if average is >= 6
+%Definitely failed if average < 6
+students_failed = find(a_mean<6);
+
+%Highest grade index
+student_high = find(a_mean==max(a_mean));
+
+%Resit students
+student_resit = find(a_min<6);
+
+%Order scores by average (highest to lowest)
+scores = [scores a_mean]
+scores = sortrows(scores(:,end))
