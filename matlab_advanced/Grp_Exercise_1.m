@@ -30,5 +30,4 @@ set(Dplot(2), 'MarkerFaceColor', 'black');
 set(Dplot(1).Title , 'String', 'PLOT D: This is a wonderful helix');
 Dplot(1).CameraPosition = [6 6 6];
 
-% Change camera orientation
 
